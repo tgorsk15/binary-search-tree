@@ -17,4 +17,4 @@ console.log(treeResult);
 
 testRun.insert(3, treeResult);
 
-
+console.log(treeResult)

@@ -2,8 +2,8 @@
 class Node {
     constructor(root, left, right) {
       this.root = root;
-      this.left = left;
-      this.right = right;
+      this.left = null;
+      this.right = null;
     }
   }
 
@@ -40,21 +40,23 @@ export const treeFactory = function() {
 
     function insert(val, node) {
         if (node === null) {
-            node.root = new Node(val);
-            return node.root
+            node = new Node(val);
+            return node
             // return new Node(val)
         };
         console.log(node);
         console.log(val);
 
         if (val < node.root) {
+            console.log('root bigger');
             node.left = insert(val, node.left);
         } else if (val > node.root) {
+            console.log('val bigger');
             node.right = insert(val, node.right);
         }
 
         console.log(node);
-        return node.root
+        return node
 
     }
 
