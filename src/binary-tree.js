@@ -26,21 +26,43 @@ export const treeFactory = function() {
         const midpoint = Math.floor((start + end) / 2);
         const newNode = new Node(arr[midpoint])
 
-        console.log(midpoint);
+        // console.log(midpoint);
         console.log(newNode);
 
         newNode.left = buildTree(arr, start, midpoint-1);
         newNode.right = buildTree(arr, midpoint+1, end);
 
         console.log(newNode)
+        console.log(newNode.root);
         return newNode
+
+    };
+
+    function insert(val, node) {
+        if (node === null) {
+            node.root = new Node(val);
+            return node.root
+            // return new Node(val)
+        };
+        console.log(node);
+        console.log(val);
+
+        if (val < node.root) {
+            node.left = insert(val, node.left);
+        } else if (val > node.root) {
+            node.right = insert(val, node.right);
+        }
+
+        console.log(node);
+        return node.root
 
     }
 
 
     return {
         sortArray,
-        buildTree
+        buildTree,
+        insert
     }
 
 }
