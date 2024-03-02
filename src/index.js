@@ -13,8 +13,24 @@ console.log(sortedArray);
 const treeResult = testRun.buildTree(sortedArray, 0, sortedArray.length - 1)
 console.log(treeResult);
 
-// prettyPrint(treeResult);
+
 
 testRun.insert(3, treeResult);
+testRun.insert(16, treeResult);
 
-console.log(treeResult)
+// prettyPrint(treeResult);
+
+
+console.log(treeResult.root)
+testRun.deleteNode(9, treeResult);
+
+prettyPrint(treeResult);
+
+testRun.deleteNode(6, treeResult);
+prettyPrint(treeResult);
+
+// testRun.deleteNode(17, treeResult);
+// prettyPrint(treeResult);
+
+// testRun.deleteNode(22, treeResult);
+// prettyPrint(treeResult);
