@@ -14,7 +14,6 @@ const treeResult = testRun.buildTree(sortedArray, 0, sortedArray.length - 1)
 console.log(treeResult);
 
 
-
 testRun.insert(3, treeResult);
 testRun.insert(16, treeResult);
 
@@ -34,3 +33,7 @@ prettyPrint(treeResult);
 
 // testRun.deleteNode(22, treeResult);
 // prettyPrint(treeResult);
+
+testRun.find(22, treeResult);
+
+// testRun.levelOrder(treeResult)
