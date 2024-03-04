@@ -69,6 +69,7 @@ export const treeFactory = function(starterArray) {
 
     }
 
+    // eslint-disable-next-line consistent-return
     function deleteNode(val, node = root) {
         console.log(root)
         if (node === null) {
@@ -157,6 +158,7 @@ export const treeFactory = function(starterArray) {
     }
 
     function levelOrder(callback) {
+        console.log(root)
 
         const rootOrder =[];
         const queue = [root];
@@ -175,7 +177,7 @@ export const treeFactory = function(starterArray) {
         while (queue.length > 0) {
             const node = queue.shift();
             // console.log(queue);
-            console.log(node);
+            // console.log(node);
 
             if (node.left !== null) {
                 queue.push(node.left)
@@ -191,19 +193,33 @@ export const treeFactory = function(starterArray) {
        
     }
 
-    function inOrder(callback) {
+    // const rootOrder = [];
+    function preOrder(callback = false, node = root) {
         const rootOrder = [];
+
+        if (node === null) {return rootOrder};
 
         if (!callback) {
             callback = (node) => {
-        
-                if (node.data !== null) {
-                    rootOrder.push(node.data);
-                }
+                
                 console.log('callback ran');
+                rootOrder.push(node.data);
                 console.log(rootOrder);
             }
-        }
+        };
+
+        callback(node);
+        // rootOrder.concat(preOrder(false, node.left));
+        // rootOrder.concat(preOrder(false, node.right));
+        preOrder(callback, node.left);
+        preOrder(callback, node.right);
+
+        console.log(rootOrder);
+        return rootOrder
+
+
+
+
     }
 
    
@@ -215,7 +231,7 @@ export const treeFactory = function(starterArray) {
         deleteNode,
         find,
         levelOrder,
-        inOrder
+        preOrder
         
     }
 

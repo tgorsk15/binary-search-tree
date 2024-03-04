@@ -1,5 +1,5 @@
 import { treeFactory } from "./binary-tree";
-import { prettyPrint } from "./supporting-functions";
+// import { prettyPrint } from "./supporting-functions";
 
 
 
@@ -16,14 +16,15 @@ const testRun = treeFactory(testArray);
 
 
 
-// testRun.insert(3);
-// testRun.insert(16);
+testRun.insert(3);
+testRun.insert(16);
 
-// testRun.deleteNode(9);
+testRun.deleteNode(9);
 
-// testRun.deleteNode(6);
+testRun.deleteNode(6);
 
 
 testRun.find(22);
 
-testRun.levelOrder()
+// testRun.levelOrder()
+testRun.preOrder();
