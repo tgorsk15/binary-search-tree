@@ -16,21 +16,14 @@ const testRun = treeFactory(testArray);
 
 
 
-// testRun.insert(3, treeResult);
-// testRun.insert(16, treeResult);
+testRun.insert(3);
+testRun.insert(16);
 
-// // prettyPrint(treeResult);
+testRun.deleteNode(9);
 
-
-// console.log(treeResult.root)
-// testRun.deleteNode(9, treeResult);
-
-// prettyPrint(treeResult);
-
-// testRun.deleteNode(6, treeResult);
-// prettyPrint(treeResult);
+testRun.deleteNode(6);
 
 
-// testRun.find(22, treeResult);
+testRun.find(22);
 
-// testRun.levelOrder(treeResult)
+// testRun.levelOrder()

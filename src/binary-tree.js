@@ -47,14 +47,13 @@ export const treeFactory = function(starterArray) {
     prettyPrint(root);
 
 
-    function insert(val, node) {
+    function insert(val, node = root) {
+        console.log(root);
         if (node === null) {
             node = new Node(val);
             return node
     
         };
-        console.log(node);
-        // console.log(val);
 
         if (val < node.data) {
             console.log('root bigger');
@@ -65,11 +64,13 @@ export const treeFactory = function(starterArray) {
         }
 
         console.log(node);
+        prettyPrint(root);
         return node 
 
     }
 
-    function deleteNode(val, node) {
+    function deleteNode(val, node = root) {
+        console.log(root)
         if (node === null) {
             console.log('not in this branch');
             return node
@@ -79,10 +80,12 @@ export const treeFactory = function(starterArray) {
         if (node.data > val) {
             node.left = deleteNode(val, node.left)
             console.log(node.left)
+            prettyPrint(root);
             return node
         } if (node.data < val) {
             node.right = deleteNode(val, node.right)
             console.log(node.right)
+            prettyPrint(root);
             return node
         }
 
@@ -132,7 +135,7 @@ export const treeFactory = function(starterArray) {
         
     }
 
-    function find(val, node) {
+    function find(val, node = root) {
         if (node === null) {
             return node
         }
@@ -152,35 +155,47 @@ export const treeFactory = function(starterArray) {
 
     }
 
-    // function levelOrder(node) {
-    //     if (node === null) {return node}
+    function levelOrder(callback) {
+        console.log(root);
 
-    //     const rootOrder =[];
-    //     const queue = [];
+        const rootOrder =[];
+        const queue = [root];
+        console.log(queue);
 
-    //     console.log(node)
-    //     queue.push(node);
-    //     const current = queue[0];
-    //     console.log(queue)
+        
+        // const current = queue[0];
+        if (!callback) {
+            callback = (node) => {
+                console.log('callback ran');
 
-    //     while (queue.length > 0) {
-    //         console.log(current)
-    //         console.log(queue)
-    //         rootOrder.push(current.root)
+                if (node.data !== null) {
+                    rootOrder.push(node.data);
+                }
+                
+                console.log(rootOrder);
+            }
+        }
 
-    //         if (current.left !== null) {
-    //             queue.push(current.left)
-    //         }
-    //         if (current.right !== null) {
-    //             queue.push(current.right);
-    //         }
-    //         queue.shift();
-    //         current = queue[0]
-    //         console.log(queue);
-    //     }
-    //     return rootOrder
+        while (queue.length > 0) {
+            const node = queue.shift();
+            console.log(queue);
+            console.log(node);
+
+            if (node.left !== null) {
+                console.log(node.left)
+                queue.push(node.left)
+            } 
+            if (node.right !== null) {
+                console.log(node.right)
+                queue.push(node.right);
+            }
+            
+            callback(node)
+        }
+        console.log(rootOrder);
+        return rootOrder
        
-    // }
+    }
 
    
 
@@ -190,6 +205,7 @@ export const treeFactory = function(starterArray) {
         insert,
         deleteNode,
         find,
+        levelOrder
         
     }
 
