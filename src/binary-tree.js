@@ -1,3 +1,4 @@
+/* eslint-disable radix */
 /* eslint-disable no-else-return */
 /* eslint-disable import/prefer-default-export */
 import { prettyPrint } from "./supporting-functions";
@@ -26,17 +27,16 @@ export const treeFactory = function(starterArray) {
             return null
         }
 
-        const midpoint = Math.floor((start + end) / 2);
+        const midpoint = parseInt(Math.floor((start + end) / 2));
         const newNode = new Node(arr[midpoint])
 
-        // console.log(midpoint);
         // console.log(newNode);
 
         newNode.left = buildTree(arr, start, midpoint-1);
         newNode.right = buildTree(arr, midpoint+1, end);
 
-        // console.log(newNode)
-        // console.log(newNode.data);
+        // console.log(`Node value: ${newNode.data}, Start: ${start}, End: ${end}, Midpoint: ${midpoint}`);
+        // prettyPrint(newNode);
         return newNode
 
     };
@@ -145,6 +145,7 @@ export const treeFactory = function(starterArray) {
             return node
         } else if(val > node.data) {
             node.right = find(val, node.right)
+            return node
         }
 
         if (node.data === val) {
@@ -156,14 +157,10 @@ export const treeFactory = function(starterArray) {
     }
 
     function levelOrder(callback) {
-        console.log(root);
 
         const rootOrder =[];
         const queue = [root];
-        console.log(queue);
 
-        
-        // const current = queue[0];
         if (!callback) {
             callback = (node) => {
                 console.log('callback ran');
@@ -171,22 +168,19 @@ export const treeFactory = function(starterArray) {
                 if (node.data !== null) {
                     rootOrder.push(node.data);
                 }
-                
                 console.log(rootOrder);
             }
         }
 
         while (queue.length > 0) {
             const node = queue.shift();
-            console.log(queue);
+            // console.log(queue);
             console.log(node);
 
             if (node.left !== null) {
-                console.log(node.left)
                 queue.push(node.left)
             } 
             if (node.right !== null) {
-                console.log(node.right)
                 queue.push(node.right);
             }
             
@@ -197,6 +191,21 @@ export const treeFactory = function(starterArray) {
        
     }
 
+    function inOrder(callback) {
+        const rootOrder = [];
+
+        if (!callback) {
+            callback = (node) => {
+        
+                if (node.data !== null) {
+                    rootOrder.push(node.data);
+                }
+                console.log('callback ran');
+                console.log(rootOrder);
+            }
+        }
+    }
+
    
 
     return {
@@ -205,7 +214,8 @@ export const treeFactory = function(starterArray) {
         insert,
         deleteNode,
         find,
-        levelOrder
+        levelOrder,
+        inOrder
         
     }
 
