@@ -1,5 +1,7 @@
 /* eslint-disable no-else-return */
 /* eslint-disable import/prefer-default-export */
+import { prettyPrint } from "./supporting-functions";
+
 class Node {
     constructor(data, left, right) {
       this.data = data;
@@ -10,16 +12,15 @@ class Node {
 
 
 
-export const treeFactory = function() {
+export const treeFactory = function(starterArray) {
 
     function sortArray(arr) {
         const orderedArray = arr.sort((a, b) => a - b)
+        console.log(orderedArray);
         return orderedArray
     } 
 
     function buildTree(arr, start, end) {
-
-
 
         if (start > end) {
             return null
@@ -34,11 +35,16 @@ export const treeFactory = function() {
         newNode.left = buildTree(arr, start, midpoint-1);
         newNode.right = buildTree(arr, midpoint+1, end);
 
-        console.log(newNode)
-        console.log(newNode.data);
+        // console.log(newNode)
+        // console.log(newNode.data);
         return newNode
 
     };
+
+    const sortedArray = sortArray(starterArray);
+    const root = buildTree(sortedArray, 0, sortedArray.length - 1)
+    console.log(root);
+    prettyPrint(root);
 
 
     function insert(val, node) {
