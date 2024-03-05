@@ -42,7 +42,7 @@ export const treeFactory = function(starterArray) {
     };
 
     const sortedArray = sortArray(starterArray);
-    const root = buildTree(sortedArray, 0, sortedArray.length - 1)
+    let root = buildTree(sortedArray, 0, sortedArray.length - 1)
     console.log(root);
     prettyPrint(root);
 
@@ -297,14 +297,26 @@ export const treeFactory = function(starterArray) {
         const rightSide = height(node.right);
         console.log(rightSide);
 
-        if (leftSide + 2 < rightSide)
+        if (leftSide + 1 < rightSide) {
+            console.log('left side too short');
+            return false
+        } else if (rightSide + 1 < leftSide) {
+            console.log('right side too short')
+            return false
+        } else {
+            console.log('tree is balanced')
+            return true
+        }
 
 
     }
 
-    // function getBranchLength(node) {
-    //     const branchLength = 
-    // }
+    function rebalance() {
+        const rebalanceArray = inOrder()
+        console.log(rebalanceArray);
+        root = buildTree(rebalanceArray, 0, rebalanceArray.length - 1)
+        prettyPrint(root);
+    }
 
     return {
         sortArray,
@@ -318,7 +330,8 @@ export const treeFactory = function(starterArray) {
         postOrder,
         height,
         depth,
-        isBalanced
+        isBalanced,
+        rebalance
         
     }
 
