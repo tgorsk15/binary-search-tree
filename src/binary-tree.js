@@ -151,7 +151,7 @@ export const treeFactory = function(starterArray) {
 
         if (node.data === val) {
             console.log(node);
-            console.log(`Here is your node: ${node.data}`);
+            // console.log(`Here is your node: ${node.data}`);
             return node
         }
 
@@ -193,7 +193,6 @@ export const treeFactory = function(starterArray) {
        
     }
 
-    // const rootOrder = [];
     function preOrder(callback, node = root) {
         const rootOrder = [];
 
@@ -257,7 +256,42 @@ export const treeFactory = function(starterArray) {
         return rootOrder
     }
 
-   
+    function height(node = root) {
+        if (node === null) {
+            return -1
+        } else {
+            const currentHeight = Math.max(height(node.left) + 1, height(node.right) + 1)
+            console.log(currentHeight);
+            return currentHeight 
+        }
+
+    }
+
+    function depth(val, node = root) {
+        const foundNode = find(val)
+        if (foundNode === null) {
+            console.log('doesnt exist yo')
+        }
+        if (node === null) {
+            console.log('end reached');
+            return -1
+        }
+
+        console.log(node.data)
+        if (val < node.data) {
+            const currentDepth = depth(val, node.left) +1
+            console.log(currentDepth);
+            return currentDepth
+        } else if (val > node.data) {
+            const currentDepth = depth(val, node.right) +1
+            console.log(currentDepth);
+            return currentDepth
+        }
+
+        return 0
+
+    }
+
 
     return {
         sortArray,
@@ -268,7 +302,9 @@ export const treeFactory = function(starterArray) {
         levelOrder,
         preOrder,
         inOrder,
-        postOrder
+        postOrder,
+        height,
+        depth
         
     }
 
