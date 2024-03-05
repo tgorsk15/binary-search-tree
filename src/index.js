@@ -9,7 +9,9 @@ const testRun = treeFactory(testArray);
 
 
 testRun.insert(3);
-testRun.insert(16);
+testRun.insert(18);
+testRun.insert(17);
+testRun.insert(15);
 
 testRun.deleteNode(9);
 
@@ -23,7 +25,8 @@ testRun.find(22);
 // testRun.inOrder();
 // testRun.postOrder();
 
-testRun.height();
+// testRun.height();
 
+// testRun.depth(16);
 
-testRun.depth(16);
+testRun.isBalanced();

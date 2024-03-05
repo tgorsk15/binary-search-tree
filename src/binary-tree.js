@@ -258,7 +258,7 @@ export const treeFactory = function(starterArray) {
 
     function height(node = root) {
         if (node === null) {
-            return -1
+            return 0
         } else {
             const currentHeight = Math.max(height(node.left) + 1, height(node.right) + 1)
             console.log(currentHeight);
@@ -287,11 +287,24 @@ export const treeFactory = function(starterArray) {
             console.log(currentDepth);
             return currentDepth
         }
-
         return 0
 
     }
 
+    function isBalanced(node = root) {
+        const leftSide = height(node.left)
+        console.log(leftSide);
+        const rightSide = height(node.right);
+        console.log(rightSide);
+
+        if (leftSide + 2 < rightSide)
+
+
+    }
+
+    // function getBranchLength(node) {
+    //     const branchLength = 
+    // }
 
     return {
         sortArray,
@@ -304,7 +317,8 @@ export const treeFactory = function(starterArray) {
         inOrder,
         postOrder,
         height,
-        depth
+        depth,
+        isBalanced
         
     }
 
