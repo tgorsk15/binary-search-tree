@@ -194,14 +194,14 @@ export const treeFactory = function(starterArray) {
     }
 
     // const rootOrder = [];
-    function preOrder(callback = false, node = root) {
+    function preOrder(callback, node = root) {
         const rootOrder = [];
 
         if (node === null) {return rootOrder};
 
         if (!callback) {
             callback = (node) => {
-                
+
                 console.log('callback ran');
                 rootOrder.push(node.data);
                 console.log(rootOrder);
@@ -209,17 +209,52 @@ export const treeFactory = function(starterArray) {
         };
 
         callback(node);
-        // rootOrder.concat(preOrder(false, node.left));
-        // rootOrder.concat(preOrder(false, node.right));
         preOrder(callback, node.left);
         preOrder(callback, node.right);
 
         console.log(rootOrder);
         return rootOrder
 
+    }
 
+    function inOrder(callback, node = root) {
+        const rootOrder = [];
 
+        if (node === null) {return rootOrder};
 
+        if (!callback) {
+
+            callback = (node) => {
+                rootOrder.push(node.data);
+                console.log(rootOrder);
+            }
+        };
+
+        inOrder(callback, node.left);
+        callback(node);
+        inOrder(callback, node.right);
+
+        return rootOrder
+    }
+
+    function postOrder(callback, node = root) {
+        const rootOrder = [];
+
+        if (node === null) {return rootOrder};
+
+        if (!callback) {
+
+            callback = (node) => {
+                rootOrder.push(node.data);
+                console.log(rootOrder);
+            }
+        };
+
+        postOrder(callback, node.left);
+        postOrder(callback, node.right);
+        callback(node);
+
+        return rootOrder
     }
 
    
@@ -231,7 +266,9 @@ export const treeFactory = function(starterArray) {
         deleteNode,
         find,
         levelOrder,
-        preOrder
+        preOrder,
+        inOrder,
+        postOrder
         
     }
 

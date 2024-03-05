@@ -27,4 +27,6 @@ testRun.deleteNode(6);
 testRun.find(22);
 
 // testRun.levelOrder()
-testRun.preOrder();
+// testRun.preOrder();
+// testRun.inOrder();
+testRun.postOrder();
