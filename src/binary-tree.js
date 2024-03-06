@@ -1,3 +1,4 @@
+/* eslint-disable arrow-body-style */
 /* eslint-disable radix */
 /* eslint-disable no-else-return */
 /* eslint-disable import/prefer-default-export */
@@ -18,7 +19,11 @@ export const treeFactory = function(starterArray) {
     function sortArray(arr) {
         const orderedArray = arr.sort((a, b) => a - b)
         console.log(orderedArray);
-        return orderedArray
+        const uniqueArray = orderedArray.filter((val, index) => {
+            return orderedArray.indexOf(val) === index
+        })
+        console.log(uniqueArray);
+        return uniqueArray
     } 
 
     function buildTree(arr, start, end) {
@@ -30,13 +35,9 @@ export const treeFactory = function(starterArray) {
         const midpoint = parseInt(Math.floor((start + end) / 2));
         const newNode = new Node(arr[midpoint])
 
-        // console.log(newNode);
-
         newNode.left = buildTree(arr, start, midpoint-1);
         newNode.right = buildTree(arr, midpoint+1, end);
 
-        // console.log(`Node value: ${newNode.data}, Start: ${start}, End: ${end}, Midpoint: ${midpoint}`);
-        // prettyPrint(newNode);
         return newNode
 
     };
@@ -177,7 +178,6 @@ export const treeFactory = function(starterArray) {
         while (queue.length > 0) {
             const node = queue.shift();
             // console.log(queue);
-            // console.log(node);
 
             if (node.left !== null) {
                 queue.push(node.left)

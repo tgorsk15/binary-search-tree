@@ -1,9 +1,7 @@
 import { treeFactory } from "./binary-tree";
-// import { prettyPrint } from "./supporting-functions";
 
 
-
-const testArray = [8, 6, 9, 10, 31, 45, 22, 23, 2, 14];
+const testArray = [8, 6, 9, 9, 9, 10, 31, 45, 22, 23, 2, 14];
 const testRun = treeFactory(testArray);
 
 
