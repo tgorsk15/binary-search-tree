@@ -2,7 +2,7 @@
 /* eslint-disable radix */
 /* eslint-disable no-else-return */
 /* eslint-disable import/prefer-default-export */
-import { prettyPrint } from "./supporting-functions";
+import { prettyPrint } from "./pretty-print";
 
 class Node {
     constructor(data, left, right) {
